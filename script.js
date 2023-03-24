@@ -8,6 +8,7 @@ let minutes
 const minutesDisplay = document.querySelector('.minutes')
 const secondsDisplay = document.querySelector('.seconds')
 
+
 // playButton.classList.add('hide')
 // document.querySelector('.pause').classList.remove('hide')
 
@@ -48,10 +49,23 @@ function countdown() {
         // secondsDisplay.textContent = String(seconds - 1).padStart(2, "0")
         updateTimerDisplay(minutes, String(seconds -1))
         
+        
         countdown()
+        
         
     }, 1000)
 }
+
+stopButton.onclick = function() {
+    stopSeconds = Number(secondsDisplay.textContent)
+    clearInterval(stopSeconds)
+    stopSeconds = null
+}
+
+// stopCount = () => {
+//     clearInterval(secondsDisplay)
+//     secondsDisplay = null
+// }
 
 function updateTimerDisplay(minutes, seconds) {
     minutesDisplay.textContent = String(minutes).padStart(2, "0")
@@ -67,7 +81,8 @@ function buttonStop() {
     setButton.classList.remove('hide')
     stopButton.classList.add('hide')
     pauseButton.classList.add('hide')
-    playButton.classList.remove('hide')   
+    playButton.classList.remove('hide')
+    
 }
 
 function resetControls() {
