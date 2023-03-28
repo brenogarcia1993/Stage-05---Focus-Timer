@@ -1,7 +1,9 @@
 // EcmaScript - ES6 Modules
+// default import
+import resetControls from "./controls.js"
 
-import resetControls from "./controls"
-import "./timer.js"
+// named import
+import {countdown, resetTimer} from "./timer.js"
 
 
 

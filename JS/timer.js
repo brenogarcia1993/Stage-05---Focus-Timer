@@ -35,3 +35,5 @@ function countdown() {
         
     }, 1000)
 }
+
+export {countdown, resetTimer}
