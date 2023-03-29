@@ -1,3 +1,10 @@
+export default function Timer({
+    minutesDisplay,
+    secondsDisplay,
+    stopCount,
+    resetControls,
+}) {
+
 function updateTimerDisplay(minutes, seconds) {
     minutesDisplay.textContent = String(minutes).padStart(2, "0")
     secondsDisplay.textContent = String(seconds).padStart(2, "0")
@@ -36,4 +43,9 @@ function countdown() {
     }, 1000)
 }
 
-export {countdown, resetTimer}
+    return {
+        countdown, //Shorthand properties
+        resetTimer,
+    }
+    
+}
