@@ -1,11 +1,9 @@
 // EcmaScript - ES6 Modules
 // default import
-import resetControls from "./controls.js"
+import Controls from "./controls.js"
 
 // named import
-import { Timer } from "./timer.js"
-
-
+import Timer from "./timer.js"
 
 const playButton = document.querySelector('.play')
 const pauseButton = document.querySelector('.pause')
@@ -18,12 +16,20 @@ const minutesDisplay = document.querySelector('.minutes')
 const secondsDisplay = document.querySelector('.seconds')
 let minutes = Number(minutesDisplay.textContent)
 
+const controls = Controls({
+    playButton,
+    pauseButton,
+    stopButton,
+    setButton
+})
+
 
 const timer = Timer({
     minutesDisplay,
     secondsDisplay,
     stopCount,
-    resetControls,
+    resetControls: controls.reset,
+    minutes
 })
 
 
@@ -35,24 +41,20 @@ soundOffButton.addEventListener('click', buttonSound)
 setButton.addEventListener('click', buttonSetTimer)
 
 function buttonPlay() {
-    playButton.classList.add('hide')
-    pauseButton.classList.remove('hide')
-    setButton.classList.add('hide')
-    stopButton.classList.remove('hide')
-
+    
+    controls.play()
     timer.countdown()
 }
 
 
 function buttonPause() {
-    pauseButton.classList.add('hide')
-    playButton.classList.remove('hide')
+    controls.pause()
     clearTimeout(stopCount)
 }
 
 function buttonStop() {
-    resetControls()
-    timer.resetTimer()
+    controls.reset()
+    timer.reset()
     clearTimeout(stopCount)
     
 }
@@ -63,14 +65,15 @@ function buttonSound() {
 }
 
 function buttonSetTimer() {
-    let newMinutes = prompt('Quantos minutos?')
-    if (!newMinutes) {
-        timer.resetTimer()
-        return
-    }
+    let newMinutes = controls.getMinutes()
+        if (!newMinutes) {
+           timer.reset()
+           return
+        }
 
-    minutes = newMinutes
-    updateTimerDisplay(minutes, 0)
+        minutes = newMinutes
+        timer.updateDisplay(minutes, 0)
+        timer.updateMinutes(minutes)
        
 }
 
