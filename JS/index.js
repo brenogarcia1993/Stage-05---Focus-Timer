@@ -11,10 +11,10 @@ const stopButton = document.querySelector('.stop')
 const setButton = document.querySelector('.set')
 const soundOnButton = document.querySelector('.sound-on')
 const soundOffButton = document.querySelector('.sound-off')
-let stopCount
 const minutesDisplay = document.querySelector('.minutes')
 const secondsDisplay = document.querySelector('.seconds')
-let minutes = Number(minutesDisplay.textContent)
+
+
 
 const controls = Controls({
     playButton,
@@ -27,9 +27,8 @@ const controls = Controls({
 const timer = Timer({
     minutesDisplay,
     secondsDisplay,
-    stopCount,
     resetControls: controls.reset,
-    minutes
+    
 })
 
 
@@ -49,13 +48,14 @@ function buttonPlay() {
 
 function buttonPause() {
     controls.pause()
-    clearTimeout(stopCount)
+    timer.hold()
+    
 }
 
 function buttonStop() {
     controls.reset()
     timer.reset()
-    clearTimeout(stopCount)
+    
     
 }
 
@@ -71,9 +71,10 @@ function buttonSetTimer() {
            return
         }
 
-        minutes = newMinutes
-        timer.updateDisplay(minutes, 0)
-        timer.updateMinutes(minutes)
+        
+        timer.updateDisplay(newMinutes, 0)
+        timer.updateMinutes(newMinutes)
+       
        
 }
 

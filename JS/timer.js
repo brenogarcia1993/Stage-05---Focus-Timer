@@ -1,14 +1,17 @@
 export default function Timer({
     minutesDisplay,
     secondsDisplay,
-    stopCount,
     resetControls,
-    minutes
+    
 }) {
+
+let stopCount
+let minutes = Number(minutesDisplay.textContent)
 
 function updateDisplay(minutes, seconds) {
     minutesDisplay.textContent = String(minutes).padStart(2, "0")
     secondsDisplay.textContent = String(seconds).padStart(2, "0")
+    
 }
 
 function reset() {
@@ -48,11 +51,16 @@ function updateMinutes(newMinutes) {
     minutes = newMinutes
 }
 
+function hold() {
+    clearTimeout(stopCount)
+}
+
     return {
         countdown, //Shorthand properties
         reset,
         updateDisplay,
-        updateMinutes
+        updateMinutes,
+        hold
     }
     
 }
