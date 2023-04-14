@@ -1,8 +1,9 @@
+import Sounds from "./sounds.js"
+
 export default function Timer({
     minutesDisplay,
     secondsDisplay,
-    resetControls,
-    
+    resetControls,   
 }) {
 
 let stopCount
@@ -31,6 +32,7 @@ function countdown() {
         if(isFinished) {
             resetControls()
             updateDisplay()
+            Sounds().timeEnd()
             return
 
         }
