@@ -1,11 +1,14 @@
-export default function Events({
-    buttonPlay,
-    buttonPause,
-    buttonStop,
-    buttonSoundOn,
-    buttonSoundOff,
-    buttonSetTimer, 
-})
+import {
+  playButton,
+  pauseButton,
+  setButton,
+  stopButton,
+  soundOffButton,
+  soundOnButton
+} from "./elements.js"
+
+export default function({controls, timer, sound}) {
+    
 
 playButton.addEventListener("click", buttonPlay); //Callback
 pauseButton.addEventListener("click", buttonPause); //Callback
@@ -52,4 +55,6 @@ function buttonSetTimer() {
 
   timer.updateDisplay(newMinutes, 0);
   timer.updateMinutes(newMinutes);
+}
+
 }

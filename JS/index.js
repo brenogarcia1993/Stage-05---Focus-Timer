@@ -12,12 +12,9 @@ import {
     pauseButton,
     setButton,
     stopButton,
-    soundOnButton,
-    soundOffButton,
     minutesDisplay,
     secondsDisplay, 
 } from "./elements.js"
-
 
 
 
@@ -36,6 +33,8 @@ const timer = Timer({
     resetControls: controls.reset,
     
 })
+
+Events({controls, timer, sound})
 
 
 // playButton.addEventListener('click', buttonPlay)    //Callback
